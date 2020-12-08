@@ -27,5 +27,28 @@ DomElement.prototype.create = function(text) {
     document.body.insertAdjacentElement('beforeend', elem);
 };
 
-const obj = new DomElement('#block', '200px', '500px', '#ccc', '20px');
-obj.create('Aloha!');
+const obj = new DomElement('#block', '100px', '100px', 'orange', '20px');
+
+document.addEventListener('DOMContentLoaded', obj.create('Lets move!'));
+
+const square = document.querySelector(obj.selector);
+square.style.position = 'absolute';
+square.style.top = '0px';
+square.style.left = '0px';
+
+const moveElem = function(event) {
+    if (event.code === 'ArrowRight') {
+        square.style.left = parseInt(square.style.left) + 10 + 'px';
+    }
+    if (event.code === 'ArrowLeft') {
+        square.style.left = parseInt(square.style.left) - 10 + 'px';
+    }
+    if (event.code === 'ArrowUp') {
+        square.style.top = parseInt(square.style.top) - 10 + 'px';
+    }
+    if (event.code === 'ArrowDown') {
+        square.style.top = parseInt(square.style.top) + 10 + 'px';
+    }
+};
+
+document.addEventListener('keydown', moveElem);
